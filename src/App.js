@@ -1,26 +1,81 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import loginService from './services/login'  
+import blogService from './services/blogs'  
 
-function App() {
+import Blog from './components/Blog'
+
+const App = () =>  {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+  const [blogs, setBlogs] = useState([])
+
+  useEffect(() => {
+    blogService
+      .getAll()
+      .then(bs => setBlogs(bs))
+  }, [])
+
+  const handleLogin = async e => {
+    try {
+      e.preventDefault()
+      const user = await loginService.login({ username , password })
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    }
+    catch (exception) {
+      console.log(exception)
+    }
+  }
+
+  const loginForm = () => {
+    return <form onSubmit={handleLogin}>
+      <h1>log in to application</h1>
+      <div>
+        username
+        <input 
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          type="text"
+        />
+      </div>
+      <div>
+        password
+        <input 
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+      </div>
+      <div>
+        <input type="submit" value="login" />
+      </div>
+    </form>
+  }
+
+  const blogList = () => {
+     const blogsArr = blogs.length > 0 
+       ? blogs.map(blog => <Blog key={blog.id} blog={blog} />)
+       : null
+    
+    return (
+      <div>
+        <h1>Blogs</h1>
+        <p>{user.name} is logged in</p>
+        {blogsArr}
+      </div>
+    )
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div>
+      {user === null
+          ? loginForm()
+          : blogList()
+      }
+    </div>  
+  )
 }
 
-export default App;
+export default App
