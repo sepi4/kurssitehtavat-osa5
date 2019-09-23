@@ -2,11 +2,11 @@ import React from 'react'
 
 import Notification from './Notification'
 
-const LoginForm = ({ 
-  message, 
-  username, 
-  password, 
-  setUsername, 
+const LoginForm = ({
+  message,
+  username,
+  password,
+  setUsername,
   setPassword,
   handleLogin
 }) => {
@@ -17,7 +17,7 @@ const LoginForm = ({
         <Notification message={message} />
         <div>
           username
-          <input 
+          <input
             value={username}
             onChange={setUsername}
             type="text"
@@ -25,7 +25,7 @@ const LoginForm = ({
         </div>
         <div>
           password
-          <input 
+          <input
             type="password"
             value={password}
             onChange={setPassword}
@@ -39,4 +39,4 @@ const LoginForm = ({
   )
 }
 
-export default LoginForm 
+export default LoginForm

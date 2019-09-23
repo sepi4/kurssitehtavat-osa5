@@ -7,10 +7,10 @@ import Togglable from './Togglable'
 import BlogsList from './BlogsList'
 
 const LoggedView = ({
-  blogs, 
-  user, 
-  handleLogout, 
-  handleAddNewBlog, 
+  blogs,
+  user,
+  handleLogout,
+  handleAddNewBlog,
   handleLike,
   handleRemove,
   message
@@ -24,12 +24,12 @@ const LoggedView = ({
       </p>
       <Notification message={message} />
       <Togglable buttonLabel="new blog">
-        <CreateNewBlog 
+        <CreateNewBlog
           user={user}
           addNewBlog={handleAddNewBlog}
         />
       </Togglable>
-      <BlogsList 
+      <BlogsList
         blogs={blogs}
         handleLike={handleLike}
         handleRemove={handleRemove}
