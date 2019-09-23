@@ -13,7 +13,6 @@ const CreateNewBlog = ({ user, addNewBlog }) => {
     setTitle('')
     setAuthor('')
     setUrl('')
-    console.log(b)
     addNewBlog(b)
   }
 
