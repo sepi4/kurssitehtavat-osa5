@@ -3,6 +3,7 @@ import loginService from './services/login'
 import blogService from './services/blogs'  
 
 import Blog from './components/Blog'
+import CreateNewBlog from './components/CreateNewBlog'
 
 const App = () =>  {
   const [username, setUsername] = useState('')
@@ -67,9 +68,9 @@ const App = () =>  {
     </form>
   }
 
-  const blogList = () => {
+  const loggedUserView = () => {
      const blogsArr = blogs.length > 0 
-       ? blogs.map(blog => <Blog key={blog.id} blog={blog} />)
+      ? <ul>{blogs.map(blog => <li key={blog.id}><Blog blog={blog} /></li>)}</ul>
        : null
     
     return (
@@ -78,6 +79,10 @@ const App = () =>  {
         <p>{user.name} is logged in
           <button onClick={handleLogout}>logout</button>
         </p>
+        <CreateNewBlog 
+          user={user}
+          addNewBlog={newBlog => { setBlogs(blogs.concat(newBlog))}}
+        />
         {blogsArr}
       </div>
     )
@@ -87,7 +92,7 @@ const App = () =>  {
     <div>
       {user === null
           ? loginForm()
-          : blogList()
+          : loggedUserView()
       }
     </div>  
   )
