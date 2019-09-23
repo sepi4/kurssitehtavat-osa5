@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Notification from './Notification'
 import CreateNewBlog from './CreateNewBlog'
@@ -38,4 +39,13 @@ const LoggedView = ({
   )
 }
 
+LoggedView.propTypes = {
+  blogs: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  handleAddNewBlog: PropTypes.func.isRequired,
+  handleLike: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
+  message: PropTypes.string,
+}
 export default LoggedView
