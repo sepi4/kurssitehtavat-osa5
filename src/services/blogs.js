@@ -10,7 +10,7 @@ const createBlog = async (token, newObject) => {
   const config = {
     headers: { Authorization: `bearer ${token}` },
   }
-  const response = await axios.post(baseUrl, newObject, config) 
+  const response = await axios.post(baseUrl, newObject, config)
   return response.data
 }
 
@@ -38,7 +38,7 @@ const removeBlog = async (blog, token) => {
     headers: { Authorization: `bearer ${token}` },
   }
   const url = `${baseUrl}/${blog.id}`
-  const response = await axios.delete(url, config) 
+  const response = await axios.delete(url, config)
   return response.data
 }
 

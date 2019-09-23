@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import loginService from './services/login'  
-import blogService from './services/blogs'  
+import loginService from './services/login'
+import blogService from './services/blogs'
 
 import LoginForm from './components/LoginForm'
 import LoggedView from './components/LoggedView'
@@ -36,7 +36,7 @@ const App = () =>  {
   }
 
   const handleLike = async blog => {
-    const updatedBlog = await blogService.likeBlog(blog)     
+    const updatedBlog = await blogService.likeBlog(blog)
     setBlogs(blogs.map(b => b.id === updatedBlog.id ? updatedBlog : b))
   }
 
@@ -44,7 +44,7 @@ const App = () =>  {
     try {
       e.preventDefault()
       const user = await loginService.login({ username , password })
-      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user)) 
+      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       setUser(user)
       setUsername('')
       setPassword('')
@@ -67,7 +67,7 @@ const App = () =>  {
     window.localStorage.removeItem('loggedBlogappUser')
   }
 
-  const handleAddNewBlog = newBlog => { 
+  const handleAddNewBlog = newBlog => {
     setBlogs(blogs.concat(newBlog))
     setMessage({
       text: `you added new blog '${newBlog.title}', by ${newBlog.author}`,
@@ -83,27 +83,25 @@ const App = () =>  {
   return (
     <div>
       {user === null
-          ? 
-            <LoginForm 
-              message={message}
-              username={username}
-              password={password}
-              setUsername={e => setUsername(e.target.value)}
-              setPassword={e => setPassword(e.target.value)}
-              handleLogin={handleLogin}
-            />
-          : 
-            <LoggedView 
-              blogs={blogs}
-              user={user}
-              handleLogout={handleLogout}
-              handleAddNewBlog={handleAddNewBlog}
-              handleLike={handleLike}
-              handleRemove={handleRemove}
-              message={message}
-            />
+        ?  <LoginForm
+          message={message}
+          username={username}
+          password={password}
+          setUsername={e => setUsername(e.target.value)}
+          setPassword={e => setPassword(e.target.value)}
+          handleLogin={handleLogin}
+        />
+        : <LoggedView
+          blogs={blogs}
+          user={user}
+          handleLogout={handleLogout}
+          handleAddNewBlog={handleAddNewBlog}
+          handleLike={handleLike}
+          handleRemove={handleRemove}
+          message={message}
+        />
       }
-    </div>  
+    </div>
   )
 }
 
