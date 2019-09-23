@@ -26,6 +26,15 @@ const App = () =>  {
       .then(bs => setBlogs(bs))
   }, [])
 
+  const handleRemove = async blog => {
+
+    const confirm = window.confirm(`Are you sure you want to remove "${blog.title}" by ${blog.author}?`)
+    if (confirm ) {
+      await blogService.removeBlog(blog, user.token)
+      setBlogs(blogs.filter(b => b.id !== blog.id))
+    }
+  }
+
   const handleLike = async blog => {
     const updatedBlog = await blogService.likeBlog(blog)     
     setBlogs(blogs.map(b => b.id === updatedBlog.id ? updatedBlog : b))
@@ -90,6 +99,7 @@ const App = () =>  {
               handleLogout={handleLogout}
               handleAddNewBlog={handleAddNewBlog}
               handleLike={handleLike}
+              handleRemove={handleRemove}
               message={message}
             />
       }

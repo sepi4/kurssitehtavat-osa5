@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const Blog = ({ blog, handleLike }) => {
+const Blog = ({ blog, handleLike, handleRemove }) => {
   const [showAll, setShowAll] = useState(false)
 
   const divStyle = {
@@ -18,27 +18,28 @@ const Blog = ({ blog, handleLike }) => {
               }}>
                 {blog.title}
               </h2>
-              <p>author: {blog.author}</p>
-              <p>added by: {blog.user.name ? blog.user.name : blog.user.username}</p>
-              <p>url: <a href={blog.url}>{blog.url}</a></p>
-              <p>likes: {blog.likes} 
+              <div>author: {blog.author}</div>
+              <div>added by: {blog.user.name ? blog.user.name : blog.user.username}</div>
+              <div>url: <a href={blog.url}>{blog.url}</a></div>
+              <div>likes: {blog.likes} 
                 <button 
                   onClick={() => { handleLike(blog) }}
                 >
                   like
                 </button>
-              </p>
+              </div>
+              <button onClick={() => handleRemove(blog)}>remove</button>
             </div>
           :
             <div>
-              <p 
+              <div 
                 style={{cursor: "pointer"}} 
                 onClick={() => {
                   setShowAll(!showAll)
                 }}
               >
                 <strong>{blog.title}</strong>, by {blog.author}
-              </p>
+              </div>
             </div>
       }
     </div>

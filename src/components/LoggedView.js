@@ -11,9 +11,9 @@ const LoggedView = ({
   handleLogout, 
   handleAddNewBlog, 
   handleLike,
+  handleRemove,
   message
 }) => {
-
 
   return (
     <div>
@@ -31,10 +31,10 @@ const LoggedView = ({
       <BlogsList 
         blogs={blogs}
         handleLike={handleLike}
+        handleRemove={handleRemove}
       />
     </div>
   )
 }
-
 
 export default LoggedView
