@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import loginService from './services/login'  
 import blogService from './services/blogs'  
 
-import Blog from './components/Blog'
-import CreateNewBlog from './components/CreateNewBlog'
-import Notification from './components/Notification'
+import LoginForm from './components/LoginForm'
+import LoggedView from './components/LoggedView'
 
 import './index.css'
 
@@ -66,58 +65,28 @@ const App = () =>  {
     }, 3000)
   }
 
-  const loginForm = () => {
-    return <form onSubmit={handleLogin}>
-      <h1>log in to application</h1>
-      <Notification message={message} />
-      <div>
-        username
-        <input 
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          type="text"
-        />
-      </div>
-      <div>
-        password
-        <input 
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <input type="submit" value="login" />
-      </div>
-    </form>
-  }
 
-  const loggedUserView = () => {
-    const blogsArr = blogs.length > 0 
-      ? <ul>{blogs.map(blog => <li key={blog.id}><Blog blog={blog} /></li>)}</ul>
-      : null
-
-    return (
-      <div>
-        <h1>Blogs</h1>
-        <p>{user.name} is logged in
-          <button onClick={handleLogout}>logout</button>
-        </p>
-        <Notification message={message} />
-        <CreateNewBlog 
-          user={user}
-          addNewBlog={handleAddNewBlog}
-        />
-        {blogsArr}
-      </div>
-    )
-  }
 
   return (
     <div>
       {user === null
-          ? loginForm()
-          : loggedUserView()
+          ? 
+            <LoginForm 
+              message={message}
+              username={username}
+              password={password}
+              setUsername={e => setUsername(e.target.value)}
+              setPassword={e => setPassword(e.target.value)}
+              handleLogin={handleLogin}
+            />
+          : 
+            <LoggedView 
+              blogs={blogs}
+              user={user}
+              handleLogout={handleLogout}
+              handleAddNewBlog={handleAddNewBlog}
+              message={message}
+            />
       }
     </div>  
   )
