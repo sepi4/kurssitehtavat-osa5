@@ -14,4 +14,23 @@ const createBlog = async (token, newObject) => {
   return response.data
 }
 
-export default { getAll, createBlog }
+const likeBlog = async blog => {
+  const blogObjToUpdate = {
+    _id: blog.id,
+    // user: {
+    //   _id: blog.user.id,
+    //   username: blog.user.username,
+    //   name: blog.user.name,
+    // },
+    user: blog.user.id,
+    likes: blog.likes + 1,
+    author: blog.author,
+    title: blog.title,
+    url: blog.url,
+  }
+  const response = await axios.put(`${baseUrl}/${blog.id}`, blogObjToUpdate)
+  response.data.user = blog.user
+  return response.data
+}
+
+export default { getAll, createBlog, likeBlog }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handleLike }) => {
   const [showAll, setShowAll] = useState(false)
 
   const divStyle = {
@@ -21,7 +21,13 @@ const Blog = ({ blog }) => {
               <p>author: {blog.author}</p>
               <p>added by: {blog.user.name ? blog.user.name : blog.user.username}</p>
               <p>url: <a href={blog.url}>{blog.url}</a></p>
-              <p>likes: {blog.likes} <button>like</button></p>
+              <p>likes: {blog.likes} 
+                <button 
+                  onClick={() => { handleLike(blog) }}
+                >
+                  like
+                </button>
+              </p>
             </div>
           :
             <div>

@@ -10,13 +10,17 @@ const LoggedView = ({
   user, 
   handleLogout, 
   handleAddNewBlog, 
+  handleLike,
   message
 }) => {
   const blogsList = blogs.length > 0 
     ? 
       <ul>{blogs.map(
         blog => <li key={blog.id}>
-          <Blog blog={blog} />
+          <Blog 
+            blog={blog} 
+            handleLike={handleLike}
+          />
         </li>)}
       </ul>
     : 

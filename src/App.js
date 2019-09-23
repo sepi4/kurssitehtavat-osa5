@@ -26,6 +26,10 @@ const App = () =>  {
       .then(bs => setBlogs(bs))
   }, [])
 
+  const handleLike = async blog => {
+    const updatedBlog = await blogService.likeBlog(blog)     
+    setBlogs(blogs.map(b => b.id === updatedBlog.id ? updatedBlog : b))
+  }
 
   const handleLogin = async e => {
     try {
@@ -85,6 +89,7 @@ const App = () =>  {
               user={user}
               handleLogout={handleLogout}
               handleAddNewBlog={handleAddNewBlog}
+              handleLike={handleLike}
               message={message}
             />
       }
