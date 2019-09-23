@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Notification from './Notification'
-import Blog from './Blog'
 import CreateNewBlog from './CreateNewBlog'
 import Togglable from './Togglable'
+import BlogsList from './BlogsList'
 
 const LoggedView = ({
   blogs, 
@@ -13,18 +13,6 @@ const LoggedView = ({
   handleLike,
   message
 }) => {
-  const blogsList = blogs.length > 0 
-    ? 
-      <ul>{blogs.map(
-        blog => <li key={blog.id}>
-          <Blog 
-            blog={blog} 
-            handleLike={handleLike}
-          />
-        </li>)}
-      </ul>
-    : 
-      null
 
 
   return (
@@ -40,7 +28,10 @@ const LoggedView = ({
           addNewBlog={handleAddNewBlog}
         />
       </Togglable>
-      {blogsList}
+      <BlogsList 
+        blogs={blogs}
+        handleLike={handleLike}
+      />
     </div>
   )
 }
