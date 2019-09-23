@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const Blog = ({ blog, handleLike, handleRemove }) => {
+const Blog = ({ blog, handleLike, handleRemove, user }) => {
   const [showAll, setShowAll] = useState(false)
 
   const divStyle = {
@@ -28,7 +28,10 @@ const Blog = ({ blog, handleLike, handleRemove }) => {
                   like
                 </button>
               </div>
-              <button onClick={() => handleRemove(blog)}>remove</button>
+              {user.id === blog.user.id 
+                  ? <button onClick={() => handleRemove(blog)}>remove</button>
+                  : null
+              }
             </div>
           :
             <div>

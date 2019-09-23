@@ -18,7 +18,7 @@ const LoggedView = ({
   return (
     <div>
       <h1>Blogs</h1>
-      <p>{user.name} is logged in
+      <p>{user.name ? user.name : user.username} is logged in
         <button onClick={handleLogout}>logout</button>
       </p>
       <Notification message={message} />
@@ -32,6 +32,7 @@ const LoggedView = ({
         blogs={blogs}
         handleLike={handleLike}
         handleRemove={handleRemove}
+        user={user}
       />
     </div>
   )
