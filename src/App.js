@@ -84,14 +84,14 @@ const App = () =>  {
 
   return (
     <div>
-      <SimpleBlog
-        blog={{
-          title: 'Simple blog title',
-          author: 'Sergei',
-          likes: 0,
-        }}
-        onClick={() => console.log('simpleBlog')}
-      />
+      {/* <SimpleBlog */}
+      {/*   blog={{ */}
+      {/*     title: 'Simple blog title', */}
+      {/*     author: 'Sergei', */}
+      {/*     likes: 0, */}
+      {/*   }} */}
+      {/*   onClick={() => console.log('simpleBlog')} */}
+      {/* /> */}
 
       {user === null
         ?  <LoginForm
