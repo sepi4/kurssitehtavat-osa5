@@ -7,6 +7,8 @@ import LoggedView from './components/LoggedView'
 
 import './index.css'
 
+import SimpleBlog from './components/SimpleBlog'
+
 const App = () =>  {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -82,6 +84,15 @@ const App = () =>  {
 
   return (
     <div>
+      <SimpleBlog
+        blog={{
+          title: 'Simple blog title',
+          author: 'Sergei',
+          likes: 0,
+        }}
+        onClick={() => console.log('simpleBlog')}
+      />
+
       {user === null
         ?  <LoginForm
           message={message}
