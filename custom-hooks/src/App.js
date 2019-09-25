@@ -19,10 +19,23 @@ const useField = (type) => {
 const useResource = (baseUrl) => {
   const [resources, setResources] = useState([])
 
-  // ...
+  useEffect(() => {
+    const request = axios.get(baseUrl)
+    request
+      .then(response => setResources(response.data))
+  }, [])
 
-  const create = (resource) => {
-    // ...
+
+  const create = async newObject => {
+    const token = null
+    const config = {
+      headers: { Authorization: token },
+    }
+
+    const response = await axios.post(baseUrl, newObject, config)
+    if (response.data) {
+      setResources(resources.concat(response.data))
+    }
   }
 
   const service = {
@@ -52,6 +65,7 @@ const App = () => {
     personService.create({ name: name.value, number: number.value})
   }
 
+  console.log('noteService', noteService.create)
   return (
     <div>
       <h2>notes</h2>
