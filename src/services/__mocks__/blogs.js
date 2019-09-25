@@ -1,6 +1,6 @@
 const blogs = [
   {
-    title: 'testi',
+    title: 'Testi1',
     author: 'koira',
     url: '',
     likes: 4,
@@ -12,7 +12,7 @@ const blogs = [
     id: '5d89512835a4756ef80ecdf9'
   },
   {
-    title: 'kiji',
+    title: 'Testi2',
     author: 'apina',
     url: '',
     likes: 2,
@@ -24,7 +24,7 @@ const blogs = [
     id: '5d89514f35a4756ef80ecdfa'
   },
   {
-    title: 'UUSI',
+    title: 'Testi3',
     author: '',
     url: '',
     likes: 3,
@@ -40,4 +40,4 @@ const blogs = [
 const getAll = () => {
   return Promise.resolve(blogs)
 }
-export default { getAll }
+export default { getAll, blogs }

@@ -41,7 +41,9 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
               setShowAll(!showAll)
             }}
           >
-            <strong>{blog.title}</strong>, by {blog.author}
+            <strong
+              className="title"
+            >{blog.title}</strong>, by {blog.author}
           </div>
         </div>
       }

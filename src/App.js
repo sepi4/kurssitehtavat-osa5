@@ -7,7 +7,7 @@ import LoggedView from './components/LoggedView'
 
 import './index.css'
 
-import SimpleBlog from './components/SimpleBlog'
+// import SimpleBlog from './components/SimpleBlog'
 
 const App = () =>  {
   const [username, setUsername] = useState('')
