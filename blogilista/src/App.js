@@ -101,7 +101,6 @@ const App = () =>  {
 
 
 
-  console.log(message)
   return (
     <div>
 
