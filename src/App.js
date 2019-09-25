@@ -5,16 +5,24 @@ import blogService from './services/blogs'
 import LoginForm from './components/LoginForm'
 import LoggedView from './components/LoggedView'
 
+import { useField } from './hooks/hooks'
+
+
 import './index.css'
 
 // import SimpleBlog from './components/SimpleBlog'
 
 const App = () =>  {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  // const [username, setUsername] = useState('')
+  const username =  useField('text')
+  // const [password, setPassword] = useState('')
+  const password =  useField('password')
+
   const [user, setUser] = useState(null)
   const [blogs, setBlogs] = useState([])
   const [message, setMessage] = useState(null)
+
+  // console.log(username)
 
   useEffect(() => {
     const loggedUserJson = window.localStorage.getItem('loggedBlogappUser')
@@ -45,15 +53,22 @@ const App = () =>  {
   const handleLogin = async e => {
     try {
       e.preventDefault()
-      const user = await loginService.login({ username , password })
+      const user = await loginService.login({
+        username: username.value,
+        password: password.value,
+      })
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       setUser(user)
-      setUsername('')
-      setPassword('')
+      // setUsername('')
+      // setPassword('')
+      username.reset()
+      password.reset()
     }
     catch (exception) {
-      setUsername('')
-      setPassword('')
+      // setUsername('')
+      // setPassword('')
+      username.reset()
+      password.reset()
       setMessage({
         text: 'wrong username or password',
         error: true,
@@ -84,22 +99,14 @@ const App = () =>  {
 
   return (
     <div>
-      {/* <SimpleBlog */}
-      {/*   blog={{ */}
-      {/*     title: 'Simple blog title', */}
-      {/*     author: 'Sergei', */}
-      {/*     likes: 0, */}
-      {/*   }} */}
-      {/*   onClick={() => console.log('simpleBlog')} */}
-      {/* /> */}
 
       {user === null
         ?  <LoginForm
           message={message}
-          username={username}
-          password={password}
-          setUsername={e => setUsername(e.target.value)}
-          setPassword={e => setPassword(e.target.value)}
+          username={username.value}
+          password={password.value}
+          setUsername={username.onChange}
+          setPassword={password.onChange}
           handleLogin={handleLogin}
         />
         : <LoggedView

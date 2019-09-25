@@ -1,6 +1,8 @@
 import React from 'react'
-
 import Notification from './Notification'
+
+// import { useField } from '../hooks/hooks'
+
 
 const LoginForm = ({
   message,
@@ -10,6 +12,10 @@ const LoginForm = ({
   setPassword,
   handleLogin
 }) => {
+
+  // const usernameArg = useField('text', username, setUsername)
+  // const passwordArg = useField('password', password, setPassword)
+
   return (
     <div >
       <form onSubmit={handleLogin}>
@@ -18,17 +24,15 @@ const LoginForm = ({
         <div>
           username
           <input
-            className="username"
+            type='text'
             value={username}
             onChange={setUsername}
-            type="text"
           />
         </div>
         <div>
           password
           <input
-            className="password"
-            type="password"
+            type='password'
             value={password}
             onChange={setPassword}
           />
