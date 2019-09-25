@@ -46,6 +46,6 @@ LoggedView.propTypes = {
   handleAddNewBlog: PropTypes.func.isRequired,
   handleLike: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
-  message: PropTypes.string,
+  message: PropTypes.object,
 }
 export default LoggedView

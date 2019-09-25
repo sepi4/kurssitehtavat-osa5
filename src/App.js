@@ -14,9 +14,9 @@ import './index.css'
 
 const App = () =>  {
   // const [username, setUsername] = useState('')
-  const username =  useField('text')
+  const [ username, resetUsername ] =  useField('text')
   // const [password, setPassword] = useState('')
-  const password =  useField('password')
+  const [ password, resetPassword ] =  useField('password')
 
   const [user, setUser] = useState(null)
   const [blogs, setBlogs] = useState([])
@@ -61,14 +61,18 @@ const App = () =>  {
       setUser(user)
       // setUsername('')
       // setPassword('')
-      username.reset()
-      password.reset()
+      // username.reset()
+      // password.reset()
+      resetUsername()
+      resetPassword()
     }
     catch (exception) {
       // setUsername('')
       // setPassword('')
-      username.reset()
-      password.reset()
+      // username.reset()
+      // password.reset()
+      resetUsername()
+      resetPassword()
       setMessage({
         text: 'wrong username or password',
         error: true,
@@ -97,6 +101,7 @@ const App = () =>  {
 
 
 
+  console.log(message)
   return (
     <div>
 

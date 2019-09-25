@@ -7,9 +7,9 @@ const CreateNewBlog = ({ user, addNewBlog }) => {
   // const [title, setTitle] = useState('')
   // const [author, setAuthor] = useState('')
   // const [url, setUrl] = useState('')
-  const title = useField('text')
-  const author = useField('text')
-  const url = useField('text')
+  const [ title, resetTitle ] = useField('text')
+  const [ author, resetAuthor ] = useField('text')
+  const [ url, resetUrl] = useField('text')
 
   const handleCreateBlog = async e => {
     e.preventDefault()
@@ -22,9 +22,12 @@ const CreateNewBlog = ({ user, addNewBlog }) => {
     // setTitle('')
     // setAuthor('')
     // setUrl('')
-    title.reset()
-    author.reset()
-    url.reset()
+    // title.reset()
+    // author.reset()
+    // url.reset()
+    resetTitle()
+    resetAuthor()
+    resetUrl()
     addNewBlog(b)
   }
 
